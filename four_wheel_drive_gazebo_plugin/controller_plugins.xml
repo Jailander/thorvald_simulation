@@ -1,0 +1,5 @@
+<library path="lib/libfour_wheel_drive_gazebo_plugin.so">
+<class name="four_wheel_drive_gazebo_plugin/MyControllerPlugin"
+type="my_controller_ns::FourWheelDriveMultiWheel"
+base_class_type="pr2_controller_interface::Controller" />
+</library>

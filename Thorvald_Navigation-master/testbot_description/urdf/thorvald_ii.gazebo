@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<robot name="thorvald_ii">  
+
+  <!--gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>thorvald_ii</robotNamespace>
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    <dynamics damping="0.0" friction="0.0"/>
+  </plugin>
+
+  <selfCollide>false</selfCollide>
+  </gazebo-->
+
+<gazebo>
+ <plugin name="four_wheel_drive_gazebo_plugin" plugin="libfour_wheel_drive_gazebo_plugin.so">
+   <robotNamespace>thorvald_ii</robotNamespace>
+   <left_joint_front>steering2</left_joint_front>
+   <right_joint_front>steering1</right_joint_front>
+   <left_joint_rear>steering3</left_joint_rear>
+   <right_joint_rear>steering0</right_joint_rear>
+   <publishOdometryMsg>true</publishOdometryMsg>
+   <publishOdometryTf>true</publishOdometryTf>
+   <robotBaseFrame>base_link</robotBaseFrame>
+   <commandTopic>joint_command</commandTopic>
+   <odometryTopic>odom</odometryTopic>
+   <odometryFrame>odom</odometryFrame>
+   <updateRate>100.0</updateRate>
+   <platform_width>0.570</platform_width>
+   <wheel_radius>0.400</wheel_radius>
+   <torque>5.0</torque>
+ </plugin>
+</gazebo>
+
+<gazebo reference="front_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="rear_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="frame_left_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="frame_right_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="left_battery_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="right_battery_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<gazebo reference="rear_right_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+<gazebo reference="rear_left_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+<gazebo reference="front_left_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+<gazebo reference="front_right_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+<gazebo reference="sensor_box_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+
+<!--hokuyo-->
+  <gazebo reference="laser">
+      <sensor name="head_hokuyo_sensor" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <always_on>1</always_on>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+        <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName>
+        <frameName>map</frameName>
+        </plugin>
+    </sensor>
+  </gazebo>
+
+
+</robot>  
