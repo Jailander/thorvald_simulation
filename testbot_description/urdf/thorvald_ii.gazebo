@@ -11,7 +11,40 @@
   <selfCollide>false</selfCollide>
   </gazebo-->
 
+<!--<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>wheel2</leftFrontJoint>
+    <rightFrontJoint>wheel1</rightFrontJoint>
+    <leftRearJoint>wheel0</leftRearJoint>
+    <rightRearJoint>wheel3</rightRearJoint>
+    <wheelSeparation>0.570</wheelSeparation>
+    <wheelDiameter>0.200</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>20</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo> -->
+
 <gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>50</updateRate>
+    <leftJoint>wheel2</leftJoint>
+    <rightJoint>wheel1</rightJoint>
+    <wheelSeparation>0.570</wheelSeparation>
+    <wheelDiameter>0.200</wheelDiameter>
+    <torque>20</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_link</robotBaseFrame>
+  </plugin>
+</gazebo>
+
+<!--<gazebo>
  <plugin name="four_wheel_drive_gazebo_plugin" plugin="libfour_wheel_drive_gazebo_plugin.so">
    <robotNamespace>thorvald_ii</robotNamespace>
    <left_joint_front>steering2</left_joint_front>
@@ -29,7 +62,7 @@
    <wheel_radius>0.400</wheel_radius>
    <torque>5.0</torque>
  </plugin>
-</gazebo>
+</gazebo> -->
 
 <gazebo reference="front_link">
     <material>Gazebo/White</material>
@@ -109,7 +142,7 @@
       </ray>
         <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
         <topicName>scan</topicName>
-        <frameName>map</frameName>
+        <frameName>laser</frameName>
         </plugin>
     </sensor>
   </gazebo>

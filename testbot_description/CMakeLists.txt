@@ -15,8 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   std_srvs
   tf
-  thorvald_ii_control
-  ignition-math2
+#  thorvald_ii_control
+#  ignition-math2
 )
 
 set(PACKAGE_DEPENDENCIES
@@ -129,7 +129,7 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS 
 #  LIBRARIES four_wheel_drive_gazebo_plugin
 #  CATKIN_DEPENDS dynamic_reconfigure gazebo_plugins gazebo_ros geometry_msgs nav_msgs roscpp std_msgs std_srvs tf
   DEPENDS 
@@ -142,7 +142,6 @@ catkin_package(
   std_msgs
   std_srvs
   tf
-  thorvald_ii_control
 )
 
 ###########

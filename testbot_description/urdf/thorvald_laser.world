@@ -3752,7 +3752,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/vigneshnuc/catkin_ws/src/Thorvald_Navigation-master/testbot_description/meshes/hokuyo.dae</uri>
+              <uri>/home/jaime/workspaces/thorvald_ws/src/thorvald_simulation/testbot_description/meshes/hokuyo.dae</uri>
             </mesh>
           </geometry>
           <material>

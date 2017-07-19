@@ -33,7 +33,7 @@
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
 
-#include <thorvald_ii_control/BaseState.h>
+#include <base_drive_chain/BaseState.h>
 
 namespace gazebo
 {
@@ -73,7 +73,7 @@ namespace gazebo
       nav_msgs::Odometry odom_; 
       bool alive_;
       std::string tf_prefix_;
-      thorvald_ii_control::BaseState joint_command_;
+      base_drive_chain::BaseState joint_command_;
 
       boost::mutex lock;
 
@@ -89,7 +89,7 @@ namespace gazebo
       void QueueThread();
 
      // DiffDrive stuff
-     void jointcmdVelCallback(const thorvald_ii_control::BaseState::ConstPtr& joint_cmd_msg);
+     void jointcmdVelCallback(const base_drive_chain::BaseState::ConstPtr& joint_cmd_msg);
 
       // Update Rate
       double update_rate_;

@@ -184,7 +184,7 @@ namespace gazebo {
   rosnode_ = new ros::NodeHandle(this->robot_namespace_);
 
     // ROS: Subscribe to the joint command topic 
-  ros::SubscribeOptions so = ros::SubscribeOptions::create<thorvald_ii_control::BaseState>("joint_command", 1, boost::bind(&FourWheelDriveMultiWheel::jointcmdVelCallback, this, _1), ros::VoidPtr(), &queue_);
+  ros::SubscribeOptions so = ros::SubscribeOptions::create<base_drive_chain::BaseState>("joint_command", 1, boost::bind(&FourWheelDriveMultiWheel::jointcmdVelCallback, this, _1), ros::VoidPtr(), &queue_);
 
    joint_command_subscriber_ = rosnode_->subscribe(so);
 }
@@ -242,7 +242,7 @@ namespace gazebo {
     }
 }
 
-  void FourWheelDriveMultiWheel::jointcmdVelCallback(const thorvald_ii_control::BaseState::ConstPtr& joint_cmd_msg) {
+  void FourWheelDriveMultiWheel::jointcmdVelCallback(const base_drive_chain::BaseState::ConstPtr& joint_cmd_msg) {
 
     // boost::mutex::scoped_lock scoped_lock(lock);
     joint_command_.drive_mode = joint_cmd_msg->drive_mode;

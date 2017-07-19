@@ -32,8 +32,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   std_srvs
   tf
-  thorvald_ii_control
-  ignition-math2
+  base_drive_chain
 )
 
 ## System dependencies are found with CMake's conventions
@@ -138,7 +137,8 @@ catkin_package(
   std_msgs
   std_srvs
   tf
-  thorvald_ii_control
+  base_drive_chain
+#  thorvald_ii_control
 )
 
 ###########
