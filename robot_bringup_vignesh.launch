@@ -1,0 +1,41 @@
+<!--%Tag(FULL)%-->
+<launch>
+	
+	<!-- Simulation parameter-->
+	<param name="simulation" value="false" type="bool" />
+	
+	<!-- Ini file path-->
+	<param name="iniDirectory" value="$(find hardware_config)/thorvald_ii/config/base/" type="string" />
+
+        <!-- Read parameter files -->
+        <include file="$(find thorvald)/launch/thorvald_II/thorvald_parameters.launch" />
+	
+	<!-- Base link position from back axel relative to robot length-->
+	<!-- NO param name="relative_base_link_position" value="0.5" type="double" /-->
+
+	<!-- Robot_description-->
+  	<param name="robot_description"
+    		command="$(find xacro)/xacro '$(find testbot_description)/urdf/thorvald_ii.xacro'" />
+
+	<!-- Robot state publisher node -->
+	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher"  />
+
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="robot_description" command="$(find xacro)/xacro.py '$(find testbot_description)/urdf/thorvald_ii.xacro'" />
+        </node>
+
+        <node pkg="joy" type="joy_node" name="joy_node">
+                <param name="autorepeat_rate" value="10.0" type="double" />
+        </node>
+	
+        <node pkg="teleop_xbox" type="teleop_xbox" name="teleop_xbox" />
+
+        <node pkg="teleop_xbox" type="teleop_cancel_goal" name="teleop_cancel_goal" />
+	
+        <!-- Twist to joint values converter node -->
+        <node pkg="base_drive_chain" type="twist_to_joint_values_converter" name="twist_to_joint_values_converter" />
+
+</launch>
+   
+
+<!--%EndTag(FULL)%-->
