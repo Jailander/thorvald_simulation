@@ -1,0 +1,546 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="thorvald_phenotyping">
+
+  <xacro:property name="platform_length" value="1.095" />
+  <xacro:property name="platform_width" value="1.570" />
+  <xacro:property name="platform_height" value="0.695" />
+  <xacro:property name="front_offset" value="0.200" />
+  <xacro:property name="rear_offset" value="0.200" />
+  <xacro:property name="frame_beam_width" value="0.040" />
+  <xacro:property name="frame_beam_height" value="0.190" />
+  <xacro:property name="leg_radius" value="0.040" />
+  <xacro:property name="wheel_radius" value="0.200" />
+  <xacro:property name="wheel_width" value="0.160" />
+  
+  <xacro:property name="battery_length" value="0.500" />
+  <xacro:property name="battery_width" value="0.250" />
+  <xacro:property name="battery_height" value="0.400" />
+  <xacro:property name="battery_x" value="0.0" />
+  <xacro:property name="battery_y" value="0.050" />
+  <xacro:property name="battery_z" value="-0.150" />
+  
+  <xacro:property name="sensor_box_length" value="0.159" />
+  <xacro:property name="sensor_box_width" value="0.336" />
+  <xacro:property name="sensor_box_height" value="0.270" />
+  <xacro:property name="sensor_box_x" value="0.100" />
+  <xacro:property name="sensor_box_y" value="0.000" />
+  <xacro:property name="sensor_box_z" value="0.000" />
+  
+  <xacro:property name="laser_x" value="0.55" />
+  <xacro:property name="laser_y" value="0.00" />
+  <xacro:property name="laser_z" value="0.71" />
+  <xacro:property name="laser_r" value="0.00" />
+  <xacro:property name="laser_p" value="0.00" />
+  <xacro:property name="laser_y" value="0.00" />
+  
+  <xacro:property name="pi" value="3.14159265359" />
+
+  <xacro:include filename="$(find testbot_description)/urdf/thorvald_phenotyping.gazebo" />
+  <xacro:include filename="$(find testbot_description)/urdf/materials.xacro" />
+
+  <link name="front_frame">
+  </link>
+
+  <link name="prism">
+  </link>
+
+  <link name="base_link">
+  </link>
+
+  <link name="front_link">
+      <inertial>
+         <mass value="3.57593" />
+         <inertia  ixx="9.10834154273" ixy="1.58213307656"  ixz="2.41894531959"  iyy="7.61461127751"  iyz="3.78869385449"  izz="3.51520282177" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${frame_beam_width} ${platform_width} ${frame_beam_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${frame_beam_width} ${platform_width} ${frame_beam_height}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="rear_link">
+ <inertial>
+         <mass value="3.57593" />
+         <inertia  ixx="9.10834154273" ixy="1.58213307656"  ixz="2.41894531959"  iyy="7.61461127751"  iyz="3.78869385449"  izz="3.51520282177" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${frame_beam_width} ${platform_width} ${frame_beam_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${frame_beam_width} ${platform_width} ${frame_beam_height}"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="frame_left_link">
+<inertial>
+         <mass value="9.27558" />
+         <inertia  ixx="0.08543320989" ixy="0.00203527346"  ixz="0.00005369318"  iyy="1.73617847697"  iyz="0.00256904615"  izz="1.80153923143" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${platform_length} ${frame_beam_width} ${frame_beam_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${platform_length} ${frame_beam_width} ${frame_beam_height}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="frame_right_link">
+<inertial>
+         <mass value="9.27558" />
+         <inertia  ixx="0.08543320989" ixy="0.00203527346"  ixz="0.00005369318"  iyy="1.73617847697"  iyz="0.00256904615"  izz="1.80153923143" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${platform_length} ${frame_beam_width} ${frame_beam_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${platform_length} ${frame_beam_width} ${frame_beam_height}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  
+  <link name="left_battery_link">
+<inertial>
+         <mass value="6.31990" />
+         <inertia  ixx="0.29398133956" ixy="-0.00466804851"  ixz="0.01762371158"  iyy="0.34338589741"  iyz="-0.01930502652"  izz="0.36556453481" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${battery_length} ${battery_width} ${battery_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${battery_length} ${battery_width} ${battery_height}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="right_battery_link">
+<inertial>
+         <mass value="6.31990" />
+         <inertia  ixx="0.29398133956" ixy="-0.00466804851"  ixz="0.01762371158"  iyy="0.34338589741"  iyz="-0.01930502652"  izz="0.36556453481" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${battery_length} ${battery_width} ${battery_height}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${battery_length} ${battery_width} ${battery_height}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  
+  
+  <link name="sensor_box_link">
+<inertial>
+         <mass value="6" />
+         <inertia  ixx="0.001" ixy="-0.00"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" />
+       </inertial>
+    <visual>
+      <geometry>
+        <box size="${sensor_box_length} ${sensor_box_width} ${sensor_box_height}"/>
+      </geometry>
+      <material name="wood">
+        <color rgba="0.6 0.5 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${sensor_box_length} ${sensor_box_width} ${sensor_box_height}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+
+  <joint name="base_link_front_frame" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_frame"/>
+    <origin xyz="0.6 0 0" rpy="0 0 0"/>
+  </joint>
+
+
+  <joint name="front_frame_front_link" type="fixed">
+    <parent link="front_frame"/>
+    <child link="front_link"/>
+    <origin xyz="${-front_offset} 0 0" rpy="0 0 0"/>
+  </joint>
+
+  
+  <joint name="front_rear" type="fixed">
+    <parent link="front_link"/>
+    <child link="rear_link"/>
+    <origin xyz="${-platform_length + rear_offset + front_offset} 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="front_link_laser" type="fixed">
+    <parent link="front_link"/>
+    <child link="prism"/>
+    <origin xyz="${laser_x} ${laser_y} ${laser_z}" rpy="${laser_r} ${laser_p} ${laser_y}"/>
+  </joint>
+
+  <joint name="frame_front_left" type="fixed">
+    <parent link="front_link"/>
+    <child link="frame_left_link"/>
+    <origin xyz="${-platform_length/2 + front_offset} ${platform_width/2} 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="frame_front_right" type="fixed">
+    <parent link="front_link"/>
+    <child link="frame_right_link"/>
+    <origin xyz="${-platform_length/2 + front_offset} ${-platform_width/2} 0" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="frame_battery_left" type="fixed">
+    <parent link="frame_left_link"/>
+    <child link="left_battery_link"/>
+    <origin xyz="${battery_x} ${battery_y} ${battery_z}" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="frame_battery_right" type="fixed">
+    <parent link="frame_right_link"/>
+    <child link="right_battery_link"/>
+    <origin xyz="${battery_x} ${-battery_y} ${battery_z}" rpy="0 0 0"/>
+  </joint>
+  
+  <joint name="frame_sensor_box" type="fixed">
+    <parent link="front_link"/>
+    <child link="sensor_box_link"/>
+    <origin xyz="${sensor_box_x} ${sensor_box_y} ${sensor_box_z}" rpy="0 0 0"/>
+  </joint>
+  
+  
+  <link name="rear_right_leg">
+<inertial>
+         <mass value="18.04113851362" />
+         <inertia  ixx="0.08" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.03" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0 0 0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="steering0" type="continuous">
+    <parent link="frame_right_link"/>
+    <child link="rear_right_leg"/>
+    <origin xyz="${-platform_length/2} 0 ${-wheel_radius}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="rear_right_wheel">
+    <inertial>
+      <mass value="1.58698" />
+      <inertia  ixx="0.41728824734" ixy="-0.00126432781"  ixz="0.00"  iyy="0.09931113387"  iyz="-0.000000002"  izz="0.3547904736" />
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${wheel_width / 2}" radius="${wheel_radius}"/>
+      </geometry>
+      <material name="black">
+        <color rgba="1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${wheel_width / 2}" radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel0" type="fixed">
+    <parent link="rear_right_leg"/>
+    <child link="rear_right_wheel"/>
+    <origin xyz="0 0 ${-wheel_radius}" rpy="${-pi / 2} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="front_right_leg">
+<inertial>
+         <mass value="18.04113851362" />
+         <inertia  ixx="0.42070073921738702" ixy="-0.06822925640195674"  ixz="0.00112608960289035"  iyy="0.14032771307242548"  iyz="0.04164060266313061"  izz="0.37196263174132627" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0 0 0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="steering1" type="fixed">
+    <parent link="frame_right_link"/>
+    <child link="front_right_leg"/>
+    <origin xyz="${platform_length/2} 0 ${-wheel_radius}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="front_right_wheel">
+<inertial>
+         <mass value="6.38698" />
+         <inertia  ixx="0.41728824734" ixy="-0.00126432781"  ixz="0.00"  iyy="0.09931113387"  iyz="-0.000000002"  izz="0.3547904736" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+      </geometry>
+      <material name="black">
+        <color rgba="1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel1" type="continuous">
+    <parent link="front_right_leg"/>
+    <child link="front_right_wheel"/>
+    <origin xyz="0 0 ${-wheel_radius}" rpy="${-pi / 2} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="front_left_leg">
+<inertial>
+         <mass value="18.04113851362" />
+         <inertia  ixx="0.42070073921738702" ixy="-0.06822925640195674"  ixz="0.00112608960289035"  iyy="0.14032771307242548"  iyz="0.04164060266313061"  izz="0.37196263174132627" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0 0 0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="steering2" type="fixed">
+    <parent link="frame_left_link"/>
+    <child link="front_left_leg"/>
+    <origin xyz="${platform_length/2} 0 ${-wheel_radius}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="front_left_wheel">
+<inertial>
+         <mass value="6.38698" />
+         <inertia  ixx="0.41728824734" ixy="-0.00126432781"  ixz="0.00"  iyy="0.09931113387"  iyz="-0.000000002"  izz="0.3547904736" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+      </geometry>
+      <material name="black">
+        <color rgba="1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel2" type="continuous">
+    <parent link="front_left_leg"/>
+    <child link="front_left_wheel"/>
+    <origin xyz="0 0 ${-wheel_radius}" rpy="${-pi / 2} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+
+  <link name="rear_left_leg">
+<inertial>
+         <mass value="18.04113851362" />
+         <inertia  ixx="0.42070073921738702" ixy="-0.06822925640195674"  ixz="0.00112608960289035"  iyy="0.14032771307242548"  iyz="0.04164060266313061"  izz="0.37196263174132627" />
+       </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+      <material name="white">
+        <color rgba="0 0 0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${platform_height - wheel_radius}" radius="${leg_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="steering3" type="continuous">
+    <parent link="frame_left_link"/>
+    <child link="rear_left_leg"/>
+    <origin xyz="${-platform_length/2} 0 ${-wheel_radius}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="rear_left_wheel">
+    <inertial>
+         <mass value="1.58698" />
+         <inertia  ixx="0.41728824734" ixy="-0.00126432781"  ixz="0.00"  iyy="0.09931113387"  iyz="-0.000000002"  izz="0.3547904736" />
+    </inertial>
+    <visual>
+      <geometry>
+        <cylinder length="${wheel_width / 2}" radius="${wheel_radius}"/>
+      </geometry>
+      <material name="black">
+        <color rgba="1 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="${wheel_width / 2}" radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel3" type="fixed">
+    <parent link="rear_left_leg"/>
+    <child link="rear_left_wheel"/>
+    <origin xyz="0 0 ${-wheel_radius}" rpy="${-pi / 2} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Hokuyo Laser -->
+  <link name="laser">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://testbot_description/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+<joint name="hokuyo_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.1 0 .15" rpy="0 0 0"/>
+    <parent link="front_link"/>
+    <child link="laser"/>
+  </joint>
+
+  <!--transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steering2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steering1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steering3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steering0">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission-->
+
+</robot>
+
