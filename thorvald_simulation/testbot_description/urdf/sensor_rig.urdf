@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="sensor_rig_frame">
+
+  <material name="blue">
+    <color rgba="0 0 .8 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="grey">
+    <color rgba="0.169 0.169 0.169 1"/>
+  </material>
+
+  <link name="prism">
+  </link>
+
+  <link name="base_link">
+  </link>
+
+  <joint name="center_to_prism" type="fixed">
+    <parent link="base_link"/>
+    <child link="prism"/>
+    <origin xyz="0.001 -0.207 0.563"/>
+  </joint>
+
+  <link name="velodyne">
+    <visual>
+      <geometry>
+     <cylinder length="0.025" radius="0.05"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+
+  <joint name="center_to_velodyne" type="fixed">
+    <parent link="base_link"/>
+    <child link="velodyne"/>
+    <origin xyz="0.151 -0.086 -0.035"/>
+  </joint>
+
+  <link name="applanix">
+    <visual>
+      <geometry>
+        <box size="0.1 0.04 0.015"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+  <joint name="center_to_applanix" type="fixed">
+    <parent link="base_link"/>
+    <child link="applanix"/>
+    <origin xyz="-0.069 0.061 -0.0599"/>
+  </joint>
+
+  <!--link name="odom">
+  </link>
+
+  <joint name="odom_to_base_link" type="fixed">
+    <parent link="odom"/>
+    <child link="base_link"/>
+    <origin xyz="0.00 0.11 0.30"/>
+  </joint-->
+
+</robot>

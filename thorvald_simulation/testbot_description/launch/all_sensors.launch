@@ -1,0 +1,28 @@
+<launch>
+
+<param name="use_sim_time" value="true" />
+
+<include file="$(find testbot_description)/launch/urdf.launch" />
+
+<node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+  <rosparam param="mappings">
+    [{old: ENU, new: /leica},{old: base_link, new: /base_link_rig}]
+  </rosparam>
+</node>
+
+
+<arg name="path" default="/home/vignesh/catkin_ws/" />
+<arg name="file_1" default="leica_third_2017-02-01-13-15-52" />
+<arg name="file_2" default="Velodyne_third_test_01_02_2017" />
+
+<node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg path)$(arg file_1).bag $(arg path)$(arg file_2).bag">
+<remap from="tf" to="tf_old" />
+</node>
+
+<node pkg="octomap_server" type="odometry_node" name="odometry_node">
+</node>
+
+
+<include file="$(find octomap_server)/launch/octomap_mapping.launch" />
+
+</launch>

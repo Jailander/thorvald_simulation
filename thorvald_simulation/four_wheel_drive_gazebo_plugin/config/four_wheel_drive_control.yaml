@@ -1,0 +1,7 @@
+thorvald_ii:
+  # Publish all joint states -----------------------------------
+  four_wheel_drive_gazebo_plugin:
+    type: joint_state_controller/JointStateController
+    joint: [steering2, steering1, steering3, steering0]
+
+
